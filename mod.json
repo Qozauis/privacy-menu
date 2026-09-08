@@ -1,15 +1,14 @@
 {
-	"geode": "$GEODE_VERSION",
-	"gd": {
-		"win": "2.2081",
-		"android": "2.2081",
-		"mac": "2.2081",
-		"ios": "2.2081"
-	},
-	"id": "local.privacy_menu",
-	"name": "Privacy Menu",
-	"version": "v0.1.0",
-	"developer": "locallist",
-	"description": "test"
-	}
+    "geode": "5.10.1",
+    "gd": {
+        "win": "2.2081",
+        "android": "2.2081",
+        "mac": "2.2081",
+        "ios": "2.2081"
+    },
+    "id": "local.privacy_menu",
+    "name": "Privacy Menu",
+    "version": "v0.1.0",
+    "developer": "locallist",
+    "description": "test"
 }
