@@ -10,5 +10,61 @@
     "name": "Privacy Menu",
     "version": "v0.1.0",
     "developer": "locallist",
-    "description": "test"
+    "description": "Minimal privacy-focused utility and gameplay menu.",
+    "settings": {
+        "privacy-lockdown": {
+            "type": "bool",
+            "name": "Privacy Lockdown",
+            "description": "Blocks network functionality handled by Privacy Menu.",
+            "default": false
+        },
+        "icon-hack": {
+            "type": "bool",
+            "name": "Icon Hack",
+            "description": "Unlocks icons locally.",
+            "default": false
+        },
+        "verify-hack": {
+            "type": "bool",
+            "name": "Verify Hack",
+            "description": "Changes local level verification behavior.",
+            "default": false
+        },
+        "speedhack": {
+            "type": "bool",
+            "name": "Speedhack",
+            "description": "Enables the speedhack.",
+            "default": false
+        },
+        "copy-hack": {
+            "type": "bool",
+            "name": "Copy Hack",
+            "description": "Allows copying levels locally.",
+            "default": false
+        },
+        "no-c-mark": {
+            "type": "bool",
+            "name": "No (C) Mark",
+            "description": "Removes the copied-level mark.",
+            "default": false
+        },
+        "character-limit-bypass": {
+            "type": "bool",
+            "name": "Character Limit Bypass",
+            "description": "Bypasses selected local character limits.",
+            "default": false
+        },
+        "levelkick-bypass": {
+            "type": "bool",
+            "name": "LevelKick Bypass",
+            "description": "Disables selected level-kick behavior.",
+            "default": false
+        },
+        "practice-functions": {
+            "type": "bool",
+            "name": "Practice Functions",
+            "description": "Enables additional practice-related functions.",
+            "default": false
+        }
+    }
 }
