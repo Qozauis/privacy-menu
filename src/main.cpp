@@ -1,22 +1,46 @@
 #include <Geode/Geode.hpp>
 #include <Geode/utils/web.hpp>
+#include <Geode/cocos/extensions/network/HttpClient.h>
+#include <Geode/cocos/extensions/network/HttpRequest.h>
+#include <Geode/cocos/extensions/network/HttpResponse.h>
 
 using namespace geode::prelude;
+using namespace cocos2d;
 using namespace cocos2d::extension;
 
 void privacyCCHttpSend(
     CCHttpClient* self,
     CCHttpRequest* request
 ) {
-    if (Mod::get()->getSettingValue<bool>("privacy-lockdown")) {
+    // Firewall aus:
+    // Request sofort ganz normal senden.
+    if (!Mod::get()->getSettingValue<bool>("privacy-lockdown")) {
+        self->send(request);
         return;
     }
 
-    self->send(request);
+    // Firewall an:
+    // Nicht senden, aber GD sauber mitteilen,
+    // dass dieser Request fehlgeschlagen ist.
+
+    auto response = new CCHttpResponse(request);
+
+    response->setSucceed(false);
+    response->setResponseCode(0);
+    response->setErrorBuffer("Blocked by Privacy Menu firewall");
+
+    auto target = request->_pTarget;
+    auto selector = request->_pSelector;
+
+    if (target && selector) {
+        (target->*selector)(self, response);
+    }
+
+    response->release();
 }
 
 $execute {
-    // Geode WebRequest firewall
+    // Geode-WebRequests blockieren
     web::WebRequestInterceptEvent().listen(
         [](auto, auto&) {
             if (Mod::get()->getSettingValue<bool>("privacy-lockdown")) {
@@ -28,7 +52,7 @@ $execute {
         Priority::VeryEarly
     );
 
-    // Geometry Dash / Cocos2D-X HTTP firewall
+    // Geometry-Dash / Cocos2D HTTP
     Mod::get()->hook(
         reinterpret_cast<void*>(
             geode::addresser::getNonVirtual(
